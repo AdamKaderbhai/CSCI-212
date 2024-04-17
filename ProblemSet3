@@ -1,0 +1,88 @@
+/*
+ * Name: Card.java  
+ * Author: Adam Kaderbhai  
+ * Date : 4/16/2024
+ * Description: This program creates a class that represents a card with a value and suit. It has methods to get and set the value and suit, and to compare two cards. 
+ * 
+ */
+
+import java.util.Random;
+
+public class Card{
+    public static void main(String[] args) {
+        // create 6 card objects
+        Card card1 = new Card();
+        Card card2 = new Card();
+        Card card3 = new Card(12, "Hearts");
+        Card card4 = new Card(12, "Hearts");
+        Card card5 = new Card(1, "Spades");
+        Card card6 = new Card(8, "Clubs");
+
+        //Print the .toString() method for each card
+        System.out.println(card1.toString());
+        System.out.println(card2.toString());
+        System.out.println(card3.toString());
+        System.out.println(card4.toString());
+        System.out.println(card5.toString());
+        System.out.println(card6.toString());
+
+        //Print the .equals() method for each card
+        System.out.println(card1.equals(card2));
+        System.out.println(card3.equals(card4));
+        System.out.println(card5.equals(card6));
+
+        //Print the value and suit of each card
+        card5.setValue(10);
+        card6.setSuit("Diamonds");
+
+        //Print the value and suit of each card
+        System.out.println(card5.getValue());
+        System.out.println(card5.toString());
+        System.out.println(card6.getSuit());
+        System.out.println(card6.toString());
+    }
+    // Instance variables for the value and suit of the card
+    private int value;
+    private String suit;
+    private String[] suits = {"Diamonds", "Hearts", "Clubs", "Spades"};
+    private String[] values = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
+    static Random random = new Random();
+
+    
+    // Constructor with no parameters
+    public Card() {
+        this.value = random.nextInt(13) + 1; // Generate a random value between 1 and 13
+        this.suit = suits[random.nextInt(4)]; // Generate a random suit
+
+    }
+    // Constructor with parameters for the value and suit
+    public Card (int value, String suit) { 
+        this.value = value; // Set the value
+        this.suit = suit; // Set the suit
+    }
+    // Constructor with parameters for the value and suit
+    public String getValue() { // Getter for the value
+        return values[this.value - 1]; // Return the value
+    }
+    // Getter for the value
+    public void setValue(int value) { // Setter for the value
+        this.value = value; // Set the value
+    }
+    // Setter for the value
+    public String getSuit(){ // Getter for the suit
+        return suit; // Return the suit
+    }
+    // Getter for the suit
+    public void setSuit(String suit) { // Setter for the suit
+        this.suit = suit; // Set the suit
+    }
+    // Setter for the suit
+    public String toString() { // Return the card as a string
+        return values[value - 1] + " of " + suit; // Return the value and suit
+    }
+    // Return the value and suit of the card
+    public boolean equals(Card card) { // Compare the value and suit of two cards
+        return (String.valueOf(this.value).equals(card.getValue()) && this.suit.equals(card.suit)); // Compare the value and suit of two cards
+
+    }
+}
